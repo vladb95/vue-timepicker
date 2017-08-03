@@ -16,7 +16,10 @@
     "vuejs",
     "datepicker",
     "vue-component",
-    "vue-timepicker"
+    "vue-timepicker",
+    "timepicker",
+    "time",
+    "picker"
   ],
   "author": "vladb95, cyberzass",
   "license": "MIT",
@@ -25,6 +28,5 @@
   },
   "homepage": "https://github.com/vladb95/vue-timepicker#readme",
   "dependencies": {
-    "vue": "2"
   }
 }
