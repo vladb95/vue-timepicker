@@ -1,0 +1,30 @@
+{
+  "name": "vue-timepicker",
+  "version": "1.0.0",
+  "description": "Vue 2 timepicker component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladb95/vue-timepicker.git"
+  },
+  "keywords": [
+    "vue",
+    "vue2",
+    "vuejs",
+    "datepicker",
+    "vue-component",
+    "vue-timepicker"
+  ],
+  "author": "vladb95, cyberzass",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vladb95/vue-timepicker/issues"
+  },
+  "homepage": "https://github.com/vladb95/vue-timepicker#readme",
+  "dependencies": {
+    "vue": "2"
+  }
+}
