@@ -7,36 +7,34 @@ var inputRange = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
     },
     showButtons: {
       type: Boolean,
-      default: function () { return false; }
+      default: () => false
     },
     readonly: {
       type: Boolean,
-      default: function () { return false; }
+      default: () => false
     },
     step: {
       type: Number,
-      default: function () { return 1; }
+      default: () => 1
     }
   },
   computed: {
-    preparedValue: function preparedValue () {
-      return ("" + (this.value.toString().length === 1 ? "0" : "") + (this.value));
+    preparedValue () {
+      return `${this.value.toString().length === 1 ? "0" : ""}${this.value}`;
     }
   },
   methods: {
-    rangeChange: function rangeChange (way) {
-      if ( way === void 0 ) way = 1;
-
+    rangeChange (way = 1) {
       this.change(this.value + way);
     },
-    scrollRange: function scrollRange (e) {
+    scrollRange (e) {
       setTimeout(
         this.rangeChange(
-          (function (value) { return Math.max(-1, Math.min(1, (value.wheelDelta || -value.detail))); })(window.event || e)
+          (value => Math.max(-1, Math.min(1, (value.wheelDelta || -value.detail))))(window.event || e)
         ),
       1000);
     },
-    change: function change (value) {
+    change (value) {
       this.$emit("change", value);
     }
   }
@@ -45,7 +43,7 @@ var inputRange = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
 var TimePicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"timerange"},[_c('input-range',{attrs:{"readonly":_vm.readonly},on:{"change":_vm.changeHours},model:{value:(_vm.hours),callback:function ($$v) {_vm.hours=$$v;},expression:"hours"}}),_c('input-range',{attrs:{"readonly":_vm.readonly},on:{"change":_vm.changeMinutes},model:{value:(_vm.minutes),callback:function ($$v) {_vm.minutes=$$v;},expression:"minutes"}}),(_vm.showSeconds)?_c('input-range',{attrs:{"readonly":_vm.readonly},on:{"change":_vm.changeSeconds},model:{value:(_vm.seconds),callback:function ($$v) {_vm.seconds=$$v;},expression:"seconds"}}):_vm._e(),_c('md-button-toggle',[_c('md-button',{staticClass:"button-toggle",class:{'md-toggle': _vm.isPM},nativeOn:{"click":function($event){_vm.changeType();}}},[_vm._v(_vm._s(_vm.isPM ? "PM" : "AM"))])],1)],1)},staticRenderFns: [],_scopeId: 'data-v-0861fe6b',
   name: "timePicker",
   components: {
-    inputRange: inputRange
+    inputRange
   },
   props: {
     value: {
@@ -54,23 +52,23 @@ var TimePicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
     },
     showSeconds: {
       type: Boolean,
-      default: function () { return false; }
+      default: () => false
     },
     showSeparator: {
       type: Boolean,
-      default: function () { return false; }
+      default: () => false
     },
     readonly: {
       type: Boolean,
-      default: function () { return false; }
+      default: () => false
     },
     step: {
       type: Number,
-      default: function () { return 1; }
+      default: () => 1
     },
     secondStep: {
       type: Number,
-      default: function () { return 1; }
+      default: () => 1
     }
   },
   watch: {
@@ -78,7 +76,7 @@ var TimePicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
       this.prepareDate();
     }
   },
-  data: function data () {
+  data () {
     return {
       temporalDate: null,
       isPM: false,
@@ -88,7 +86,7 @@ var TimePicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
     };
   },
   methods: {
-    changeHours: function changeHours (value) {
+    changeHours (value) {
       if (value <= 0 || value > 12) {
         this.isPM = !this.isPM;
         value = value <= 0 ? 12 : 1;
@@ -98,7 +96,7 @@ var TimePicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
       this.emitChanges();
     },
 
-    changeMinutes: function changeMinutes (value) {
+    changeMinutes (value) {
       if (value <= 0 || value >= 60) {
         this.changeHours(value <= 0 ? --this.hours : ++this.hours);
         value = value <= 0 ? (60 - this.step) : 1;
@@ -108,7 +106,7 @@ var TimePicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
       this.emitChanges();
     },
 
-    changeSeconds: function changeSeconds (value) {
+    changeSeconds (value) {
       if (value <= 0 || value >= 60) {
         this.changeMinutes(value <= 0 ? --this.minutes : ++this.minutes);
         value = value <= 0 ? (60 - this.secondStep) : 1;
@@ -118,19 +116,19 @@ var TimePicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
       this.emitChanges();
     },
 
-    changeType: function changeType () {
+    changeType () {
       this.isPM = !this.isPM;
       this.isPM && (this.temporalDate.setHours(this.hours + 12));
       this.emitChanges();
     },
 
-    emitChanges: function emitChanges () {
+    emitChanges () {
       this.$emit("input", this.temporalDate.toISOString());
     },
 
-    prepareDate: function prepareDate () {
+    prepareDate () {
       this.temporalDate = new Date(this.value);
-      var hours = this.temporalDate.getHours();
+      let hours = this.temporalDate.getHours();
       if (hours > 12) {
         hours %= 12;
         this.isPM = true;
@@ -142,14 +140,14 @@ var TimePicker = {render: function(){var _vm=this;var _h=_vm.$createElement;var 
       this.seconds = this.temporalDate.getSeconds();
     }
   },
-  mounted: function mounted () {
+  mounted () {
     this.prepareDate();
   }
 };
 
-var VueTimePicker = {
+var index = {
     InputRange: inputRange,
-    TimePicker: TimePicker
+    TimePicker
 };
 
-export { VueTimePicker };
+module.exports = index;

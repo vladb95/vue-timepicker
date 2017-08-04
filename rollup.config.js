@@ -17,7 +17,6 @@ export default {
             output: false
         }),
         // buble(),
-        // commonjs(),
         // uglify({}, minify)
     ]
 };
